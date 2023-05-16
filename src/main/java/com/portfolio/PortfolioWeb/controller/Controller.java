@@ -40,13 +40,11 @@ public class Controller {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/projects/editar/{id}")
     public Project editProject(@PathVariable Long id,
-                               @RequestParam String newTitle,
-                               @RequestParam String newSnippet,
-                               @RequestParam String newURL){
+                               @RequestBody Project newProject){
         Project project = interProject.findProject(id);
-        project.setTitle(newTitle);
-        project.setSnippet(newSnippet);
-        project.setUrl(newURL);
+        project.setTitle(newProject.getTitle());
+        project.setSnippet(newProject.getSnippet());
+        project.setUrl(newProject.getUrl());
         interProject.saveProject(project);
         return project;
     }
