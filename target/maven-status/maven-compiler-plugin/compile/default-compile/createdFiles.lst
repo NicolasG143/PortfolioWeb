@@ -1,2 +1,7 @@
-com\portfolio\PortfolioWeb\PortfolioWebApplication.class
+com\portfolio\PortfolioWeb\repository\ProjectRepository.class
+com\portfolio\PortfolioWeb\service\IProjectService.class
+com\portfolio\PortfolioWeb\model\Project.class
 com\portfolio\PortfolioWeb\webConfig.class
+com\portfolio\PortfolioWeb\controller\Controller.class
+com\portfolio\PortfolioWeb\PortfolioWebApplication.class
+com\portfolio\PortfolioWeb\service\ProjectService.class
