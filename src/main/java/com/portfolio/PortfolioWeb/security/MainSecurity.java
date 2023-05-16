@@ -43,11 +43,10 @@ public class MainSecurity {
         builder.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
         authenticationManager = builder.build();
         http.authenticationManager(authenticationManager);
-
         http.csrf().disable();
         http.cors();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeHttpRequests().requestMatchers("/auth/**")
+        http.authorizeHttpRequests().requestMatchers("/auth/**", "/projects/**")
                 .permitAll().anyRequest().authenticated();
         http.exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

@@ -9,6 +9,7 @@ import com.portfolio.PortfolioWeb.model.Project;
 import com.portfolio.PortfolioWeb.service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,19 +22,22 @@ public class Controller {
     public List<Project> getProjects(){
         return interProject.getProjects();
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/projects/crear")
     public String createProject(@RequestBody Project project){
         interProject.saveProject(project);
         return "Creado exitosamente";
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/projects/eliminar/{id}")
     public String deleteProject(@PathVariable Long id){
         interProject.deleteProject(id);
         return "Eliminado correctamente";
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/projects/editar/{id}")
     public Project editProject(@PathVariable Long id,
                                @RequestParam String newTitle,
